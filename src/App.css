@@ -1,0 +1,11 @@
+.App{
+    width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.App form{
+    width: 100%;
+}
