@@ -4,6 +4,8 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_STORE = "CLEAR_STORE";
+export const GET_USER = "GET_USER";
+export const MY_USER = "MY_USER";
 
 // read actions
 export const GET_CATEGORIES = "GET_CATEGORIES";

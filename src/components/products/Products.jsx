@@ -32,13 +32,7 @@ export const Products = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-
-  const onChange = async (e) => {
-    setTitle(e.target.form[1].value);
-    setPrice(e.target.form[2].value);
-    setDescription(e.target.form[3].value);
-    setCategory(e.target.form[4].value);
-  };
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     dispatch(getAction("products", GET_PRODUCT));
@@ -69,7 +63,9 @@ export const Products = () => {
     setTitle(data.title);
     setPrice(data.price);
     setDescription(data.description);
-    setCategory(data.category.name);
+    setCategory(data.category);
+    setImage(data.image);
+    console.log(data.image)
   };
 
   const editHandleOk = () => {
@@ -113,8 +109,8 @@ export const Products = () => {
             title: values.title,
             price: values.price,
             description: values.description,
-            categoryId: values.category,
-            images: ["https://i.imgur.com/keVCVIa.jpeg"],
+            category: values.category,
+            image: values.image || ["https://i.imgur.com/keVCVIa.jpeg"],
           })
         );
         dispatch(getAction("products", GET_PRODUCT));
@@ -141,22 +137,20 @@ export const Products = () => {
       dataIndex: "category",
       key: "category",
       render: (text, record) => {
-        return <h4>{text.name}</h4>;
+        return <h4>{text}</h4>;
       },
     },
     {
       title: "Image",
-      dataIndex: "images",
-      key: "images",
+      dataIndex: "image",
+      key: "image",
       render: (text, record) => {
-        let removed = text[0].replace('["', "");
-        let removed2 = removed.slice(0, removed.length - 2);
         return (
           <div>
             <img
               style={{ width: "100px" }}
               className="tableImg"
-              src={removed2}
+              src={text}
               alt={"rasm yo"}
             />
           </div>
@@ -203,17 +197,18 @@ export const Products = () => {
                   value: category,
                 },
                 {
-                  name: ["images"],
-                  value: "",
+                  name: ["image"],
+                  value: image,
                 },
               ]}
             >
-              <input type="file" name="attachment" onChange={onChange} />
+              {/* <input type="file" name="attachment" onChange={onChange} /> */}
               <FieldHelpers
                 label="Name"
                 name="title"
                 message="Iltimos Name qatorini yo'ldiring!"
               />
+              
               <FieldHelpers
                 label="Price"
                 name="price"
@@ -225,9 +220,14 @@ export const Products = () => {
                 message="Iltimos Description qatorini yo'ldiring!"
               />
               <FieldHelpers
-                label="Category ID"
+                label="Category"
                 name="category"
                 message="Iltimos Category qatorini yo'ldiring!"
+              />
+              <FieldHelpers
+                label="Image"
+                name="image"
+                message="Iltimos Image qatorini yo'ldiring!"
               />
             </Form>
           </Modal>
@@ -291,14 +291,19 @@ export const Products = () => {
                   name: ["category"],
                   value: category,
                 },
+                {
+                  name: ["image"],
+                  value: image,
+                },
               ]}
             >
-              <input type="file" value={""} name="images" onChange={onChange} />
+              {/* <input type="file" value={""} name="images" onChange={onChange} /> */}
               <FieldHelpers
                 label="Name"
                 name="title"
                 message="Iltimos Nom qatorini yo'ldiring!"
               />
+           
               <FieldHelpers
                 label="Price"
                 name="price"
@@ -310,9 +315,14 @@ export const Products = () => {
                 message="Iltimos Description qatorini yo'ldiring!"
               />
               <FieldHelpers
-                label="Category ID"
+                label="Category"
                 name="category"
                 message="Iltimos Category ID qatorini yo'ldiring!"
+              />
+                 <FieldHelpers
+                label="Image"
+                name="image"
+                message="Iltimos Image qatorini yo'ldiring!"
               />
             </Form>
           </Modal>

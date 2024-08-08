@@ -21,6 +21,7 @@ const Login = () => {
 
   const onFinish = (values) => {
     dispatch(login(values));
+    dispatch()
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -28,7 +29,9 @@ const Login = () => {
   };
 
   return (
-    <Form
+    <div style={{height:'100vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
+
+    <Form style={{width:'600px'}}
       name="basic"
       labelCol={{
         span: 8,
@@ -44,9 +47,9 @@ const Login = () => {
       autoComplete="off"
     >
       <FieldHelpers
-        label="Email"
-        name="email"
-        message="Iltimos Email qatorini yo'ldiring!"
+        label="Username"
+        name="username"
+        message="Iltimos Username qatorini yo'ldiring!"
       />
       <FieldHelpers
         label="Parol"
@@ -66,6 +69,8 @@ const Login = () => {
         </Button>
       </Form.Item>
     </Form>
+    </div>
+
   );
 };
 

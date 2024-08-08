@@ -6,14 +6,17 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Products } from "../products/Products";
+import { NavLink, Route, Routes } from "react-router-dom";
+import User from "../user/User";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
+
   return (
     <Layout>
       <Sider
@@ -23,18 +26,15 @@ const Dashboard = () => {
         collapsed={collapsed}
       >
         <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "Product",
-            },
-          ]}
-        />
+        <div className="logo"></div>
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1" icon={<UserOutlined />}>
+            <NavLink to={""}>Dashboard</NavLink>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<UserOutlined />}>
+            <NavLink to={"products "}>Product</NavLink>
+          </Menu.Item>
+        </Menu>
       </Sider>
       <Layout>
         <Header
@@ -54,17 +54,12 @@ const Dashboard = () => {
             }}
           />
         </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          <Products />
-        </Content>
+        <Routes>
+          <Route index element={<User />} />
+          {/* <Route path="category" element={<Category />} />
+            <Route path="construction" element={<Construction />} /> */}
+          <Route path="/products" element={<Products />} />
+        </Routes>
       </Layout>
     </Layout>
   );

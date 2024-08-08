@@ -1,0 +1,21 @@
+.body{
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.ava{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info h1{
+    font-size: 20px;
+    color: gray;
+}
+
+.info h1 b{
+    border-bottom: 2px solid black;
+    color: black;
+    text-transform: uppercase;
+
+}

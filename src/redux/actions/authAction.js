@@ -7,7 +7,9 @@ export const login = (body) => async (dispatch) => {
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
+      token: body.username,
     });
+    console.log(body)
     dispatch(checkToken(3600));
   } catch (err) {
     console.log(err);
