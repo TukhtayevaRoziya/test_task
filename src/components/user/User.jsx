@@ -15,7 +15,7 @@ const User = () => {
   useEffect(() => {
     dispatch(getAction("users", GET_USER));
   }, [dispatch]);
-console.log(token)
+  console.log(token);
   // eslint-disable-next-line array-callback-return
   let myMap = users.map((u) => {
     if (u.username === token) {
@@ -31,6 +31,8 @@ console.log(token)
       );
     }
   });
+
+  // eslint-disable-next-line array-callback-return
   let myMap2 = users?.map((u) => {
     if (u.username === token) {
       return (
